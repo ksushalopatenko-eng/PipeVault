@@ -1,0 +1,13 @@
+#!/bin/sh
+COMMAND=$1
+
+if [ -n "$1" ]; then
+shift
+fi
+case "$COMMAND" in
+    send)    sh commands/send.sh "$@" ;;
+    ping)    sh commands/ping.sh "$@" ;;
+    contacts)     sh commands/contacts.sh "$@" ;;
+    log) sh commands/history.sh "$@" ;;
+    *)       echo "Usage: pipevault [send|ping|contacts|log] [options]" ;;
+esac
