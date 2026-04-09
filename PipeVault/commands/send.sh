@@ -7,7 +7,7 @@ fi
 name="not specified"
 case "$1" in
   *@*) address="$1" ;;
-  *)   address=$(grep "$1" datafiles/contacts.tsv | awk '{print $3}')
+  *)   address=$(awk -v name="$1" '$2 == name {print $3}' datafiles/contacts.tsv)
        name="$1" ;;
 esac
 echo "Address identified: $address. Name in contacts: $name"

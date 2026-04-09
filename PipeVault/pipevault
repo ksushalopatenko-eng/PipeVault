@@ -1,13 +1,16 @@
-#!/bin/sh
+#!/bin/bash
+SCRIPT_DIR="$(cd "$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")" && pwd)"
+cd "$SCRIPT_DIR"
 COMMAND=$1
 
 if [ -n "$1" ]; then
-shift
+    shift
 fi
+
 case "$COMMAND" in
-    send)    sh commands/send.sh "$@" ;;
-    ping)    sh commands/ping.sh "$@" ;;
-    contacts)     sh commands/contacts.sh "$@" ;;
-    log) sh commands/history.sh "$@" ;;
-    *)       echo "Usage: pipevault [send|ping|contacts|log] [options]" ;;
+    send)      bash commands/send.sh "$@" ;;
+    ping)      bash commands/ping.sh "$@" ;;
+    contacts)  bash commands/contacts.sh "$@" ;;
+    log)       bash commands/history.sh "$@" ;;
+    *)         echo "Usage: pipevault [send|ping|contacts|log] [options]" ;;
 esac
